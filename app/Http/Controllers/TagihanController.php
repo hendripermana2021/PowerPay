@@ -27,21 +27,34 @@ class TagihanController extends Controller
         for ($i = 0; $i < $yearsCount; $i++) {
             $tahuns[] = $currentYear - $i;
         }
-        
+
 
         return view('tagihan.create', compact('pelanggan', 'tahuns'));
     }
 
     public function store(Request $request) {
-        $tagihan = Tagihan::create([
-            'id_pelanggan'=> $request->id_pelanggan,
+        // Validate the incoming request
+        $request->validate([
+            'id_pelanggan' => 'required|exists:pelanggan,id',
+            'bulan' => 'required|integer|min:1|max:12',
+            'tahun' => 'required|integer|digits:4',
+            'meter_awal' => 'required|numeric|min:0',
+            'meter_akhir' => 'required|numeric|min:0',
+            'jumlah_meter' => 'required|numeric|min:0',
+        ]);
+
+        // Create the Tagihan record
+        Tagihan::create([
+            'pelanggan_id' => $request->id_pelanggan,
             'bulan' => $request->bulan,
             'tahun' => $request->tahun,
             'meter_awal' => $request->meter_awal,
             'meter_akhir' => $request->meter_akhir,
             'jumlah_meter' => $request->meter_akhir - $request->meter_awal,
-            'status' => 1, //default 1
+            'status' => 1,
         ]);
-        return redirect('tagihan');
+
+        // Redirect to the tagihan index page with a success message
+        return redirect('tagihan')->with('success', 'Tagihan berhasil ditambahkan.');
     }
 }

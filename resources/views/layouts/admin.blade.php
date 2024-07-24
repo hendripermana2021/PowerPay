@@ -34,7 +34,7 @@
                         </svg>
                     </button>
                     <a href="/home" class="flex ms-2 md:me-24">
-                        <img src="/asset/image/logo.png" class="h-11" alt=""> 
+                        <img src="/asset/image/logo.png" class="h-11" alt="">
                         <span
                         class="pl-5 self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
                         >Power Pay</span
@@ -151,7 +151,7 @@
                 </li>
 
                 <li>
-                    <a href="#"
+                    <a href="{{ route('tagihan/index') }}"
                         class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group">
                         <svg class="w-6 h-6 text-gray-500 group-hover:text-gray-900"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -205,6 +205,8 @@
 
     <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
+
+    @stack('scripts')
 </body>
 
 </html>

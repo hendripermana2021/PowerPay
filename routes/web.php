@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TarifController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\TagihanController;
 
 Route::middleware([
     'auth:sanctum',
@@ -32,3 +33,6 @@ Route::get('/pelanggan', [PelangganController::class, 'index'])->name('pelanggan
 Route::get('/pelanggan/create', [PelangganController::class, 'create'])->name('pelanggan.create');
 Route::post('/pelanggan/create', [PelangganController::class, 'store'])->name('pelanggan/store');
 
+Route::get('/tagihan', [TagihanController::class, 'index'])->name('tagihan/index');
+Route::get('/tagihan/create', [TagihanController::class, 'create'])->name('tagihan.create');
+Route::post('/tagihan/store', [TagihanController::class, 'store'])->name('tagihan/store');
